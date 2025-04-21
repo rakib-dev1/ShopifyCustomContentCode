@@ -1,0 +1,124 @@
+<!-- 5-Step Skincare Section -->
+<!-- https://i.postimg.cc/ZqyfDGCN/image.png -->
+<section class="skincare-steps">
+    <!-- Step 1 -->
+    <div class="step">
+      <video autoplay muted loop playsinline onclick="openFullscreen(this)">
+        <source src="https://cdn.shopify.com/videos/c/o/v/21f6108d90a54c738dd4456b3317f396.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div class="step-label">Step 1</div>
+      <h3>Prepare the device</h3>
+      <p>Fill the Rifinefusion item with serum, turn it upside down, and let it sit for 1–2 minutes to allow the needles to soak up the serum. Make sure to close it securely before use.</p>
+    </div>
+  
+    <!-- Step 2 -->
+    <div class="step">
+      <video autoplay muted loop playsinline onclick="openFullscreen(this)">
+        <source src="https://cdn.shopify.com/videos/c/o/v/e7c01d32a82b463c9203817942d9505f.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div class="step-label">Step 2</div>
+      <h3>Clean your face</h3>
+      <p>In the meantime, gently cleanse your face to remove makeup and impurities – this allows your skin to absorb the serum optimally.</p>
+    </div>
+  
+    <!-- Step 3 -->
+    <div class="step">
+      <video autoplay muted loop playsinline onclick="openFullscreen(this)">
+        <source src="https://cdn.shopify.com/videos/c/o/v/3a6ef714c6454fbfbf7b4efaeae2f036.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div class="step-label">Step 3</div>
+      <h3>Start the treatment and use the remaining serum</h3>
+      <p>Start in the center of the face and work your way out by tapping. Repeat this 2–3 times. Gently tap any remaining serum onto your face and neck and let it absorb overnight.</p>
+    </div>
+  
+    <!-- Step 4 -->
+    <div class="step">
+      <video autoplay muted loop playsinline onclick="openFullscreen(this)">
+        <source src="https://cdn.shopify.com/videos/c/o/v/4af1b3b9763d4f2e89cf2ccec792fc6d.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div class="step-label">Step 4</div>
+      <h3>Post-treatment care & cleaning of the device</h3>
+      <p>Afterwards, apply a gentle moisturizer – redness usually subsides after 15–20 minutes. Clean the device thoroughly and let it air dry completely.</p>
+    </div>
+  
+    <!-- Step 5 -->
+    <div class="step">
+      <img src="https://cdn.shopify.com/s/files/1/0747/1798/7033/files/how_works5.webp?v=1744795629" alt="Step 5 - Protecting" />
+      <div class="step-label">Step 5</div>
+      <h3>Enjoy the results</h3>
+      <p>Let the treatment absorb and enjoy your radiant, smooth skin. If you have any questions, we are always here for you – we will gladly help you get the best out of your Rifinefusion treatment.</p>
+    </div>
+</section>
+<style>
+    .skincare-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.skincare-steps .step {
+    display: flex;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    width: 260px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    flex-direction: column;
+    align-items: center;
+}
+
+.skincare-steps .step:hover {
+  transform: translateY(-5px);
+}
+
+.skincare-steps video,
+.skincare-steps img {
+  width: 250px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+    cursor: pointer; 
+}
+
+.step-label {
+  background: #6FB3B8;
+  color: white;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.skincare-steps h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.skincare-steps p {
+  font-size: 14px;
+  color: #444;
+}
+
+</style>
+<script>
+    function openFullscreen(video) {
+      if (video.requestFullscreen) {
+        video.requestFullscreen();
+      } else if (video.webkitRequestFullscreen) { /* Safari */
+        video.webkitRequestFullscreen();
+      } else if (video.msRequestFullscreen) { /* IE11 */
+        video.msRequestFullscreen();
+      }
+    }
+</script>

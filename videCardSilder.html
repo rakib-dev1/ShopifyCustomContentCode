@@ -1,0 +1,268 @@
+<!-- https://i.postimg.cc/PrrSkpCT/image.png -->
+<style>
+    .video-slider-wrapper {
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      max-width:75%
+    }
+  .sf-custom__block-inner.w-full {
+  display: flex;
+  justify-content: center;
+}
+    .video-slider-wrapper h2 {
+      font-size: 1.5rem;
+      color: #4a4a4a;
+      margin-bottom: 20px;
+    }
+  
+    .video-slider-track {
+      display: flex;
+      gap: 20px;
+      transition: transform 0.3s ease-in-out;
+      will-change: transform;
+    }
+  
+    .video-slider-track video {
+      max-width: 100%;
+      width: 250px;
+      height: auto;
+      border-radius: 8px;
+      background-color: #000;
+    }
+  
+    .single-video-box {
+      position: relative;
+      flex-shrink: 0;
+    }
+  
+    .btn-play,
+    .btn-pause,
+    .btn-fullscreen {
+      position: absolute;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .btn-play,
+    .btn-pause {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+    }
+  
+    .btn-pause {
+      display: none;
+    }
+  
+    .btn-fullscreen {
+      bottom: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+  
+    .btn-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  
+    .btn-nav-left {
+      left: 10px;
+    }
+  
+    .btn-nav-right {
+      right: 10px;
+    }
+  
+    @media (max-width: 1024px) {
+.video-slider-wrapper {
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    overflow: visible;
+    max-width: 100%;
+}
+      .video-slider-track video {
+        width: 270px;
+      }
+  
+      .btn-nav {
+        font-size: 16px;
+        padding: 8px;
+      }
+    }
+  
+    @media (max-width: 480px) {
+      .btn-nav {
+        font-size: 14px;
+        padding: 6px;
+      }
+    }
+  </style>
+  <div class="video-slider-wrapper">
+    <div class="video-slider-track">
+      <!-- Original Videos -->
+      <div class="single-video-box">
+        <video src="https://cdn.shopify.com/videos/c/o/v/2e27bcbed1934d04b3b06e434d3a0260.mp4"></video>
+        <button class="btn-play">▶</button>
+        <button class="btn-pause">⏸</button>
+        <button class="btn-fullscreen">⛶</button>
+       
+    </div>
+      <div class="single-video-box">
+        <video src="https://cdn.shopify.com/videos/c/o/v/5db4d2b7756d479daaa3ec0fc9fdca4f.mp4"></video>
+        <button class="btn-play">▶</button>
+        <button class="btn-pause">⏸</button>
+        <button class="btn-fullscreen">⛶</button>
+      </div>
+      <div class="single-video-box">
+        <video src="https://cdn.shopify.com/videos/c/o/v/b1b2abddb378455a9b78abd31bcfe5de.mp4"></video>
+        <button class="btn-play">▶</button>
+        <button class="btn-pause">⏸</button>
+        <button class="btn-fullscreen">⛶</button>
+      </div>
+      <div class="single-video-box">
+        <video src="https://cdn.shopify.com/videos/c/o/v/dae0c3ddbcca4527a0759ed45f4d348c.mp4"></video>
+        <button class="btn-play">▶</button>
+        <button class="btn-pause">⏸</button>
+        <button class="btn-fullscreen">⛶</button>
+      </div>
+      <!-- Cloned for infinite scroll feel -->
+      <div class="single-video-box">
+        <video src="https://cdn.shopify.com/videos/c/o/v/2e27bcbed1934d04b3b06e434d3a0260.mp4"></video>
+        <button class="btn-play">▶</button>
+        <button class="btn-pause">⏸</button>
+        <button class="btn-fullscreen">⛶</button>
+      </div>
+      <div class="single-video-box">
+        <video src="https://cdn.shopify.com/videos/c/o/v/5db4d2b7756d479daaa3ec0fc9fdca4f.mp4"></video>
+        <button class="btn-play">▶</button>
+        <button class="btn-pause">⏸</button>
+        <button class="btn-fullscreen">⛶</button>
+      </div>
+      <div class="single-video-box">
+        <video src="https://cdn.shopify.com/videos/c/o/v/b1b2abddb378455a9b78abd31bcfe5de.mp4"></video>
+        <button class="btn-play">▶</button>
+        <button class="btn-pause">⏸</button>
+        <button class="btn-fullscreen">⛶</button>
+      </div>
+      <div class="single-video-box">
+        <video src="https://cdn.shopify.com/videos/c/o/v/dae0c3ddbcca4527a0759ed45f4d348c.mp4"></video>
+        <button class="btn-play">▶</button>
+        <button class="btn-pause">⏸</button>
+        <button class="btn-fullscreen">⛶</button>
+      </div>
+        </div>
+  
+    <!-- Navigation Arrows -->
+    <button class="btn-nav btn-nav-left">&#8592;</button>
+    <button class="btn-nav btn-nav-right">&#8594;</button>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const track = document.querySelector('.video-slider-track');
+      const btnLeft = document.querySelector('.btn-nav-left');
+      const btnRight = document.querySelector('.btn-nav-right');
+      const videoBoxes = Array.from(document.querySelectorAll('.single-video-box'));
+      const videos = document.querySelectorAll('.video-slider-track video');
+  
+      let currentIndex = 0;
+  
+      function getVisibleCount() {
+        const containerWidth = document.querySelector('.video-slider-wrapper').offsetWidth;
+        const videoWidth = document.querySelector('.video-slider-track video').offsetWidth;
+        const gap = parseInt(getComputedStyle(track).gap, 10);
+        return Math.floor(containerWidth / (videoWidth + gap));
+      }
+  
+      function moveTrack() {
+        const videoWidth = document.querySelector('.video-slider-track video').offsetWidth;
+        const gap = parseInt(getComputedStyle(track).gap, 10);
+        const offset = -(currentIndex * (videoWidth + gap));
+        track.style.transform = `translateX(${offset}px)`;
+      }
+  
+      btnLeft.addEventListener('click', () => {
+        currentIndex--;
+        if (currentIndex < 0) {
+          currentIndex = videoBoxes.length - getVisibleCount();
+        }
+        moveTrack();
+      });
+  
+      btnRight.addEventListener('click', () => {
+        currentIndex++;
+        if (currentIndex >= videoBoxes.length - getVisibleCount() + 1) {
+          currentIndex = 0;
+        }
+        moveTrack();
+      });
+  
+      window.addEventListener('resize', moveTrack);
+  
+      document.querySelectorAll('.single-video-box').forEach(box => {
+        const video = box.querySelector('video');
+        const playBtn = box.querySelector('.btn-play');
+        const pauseBtn = box.querySelector('.btn-pause');
+        const fullscreenBtn = box.querySelector('.btn-fullscreen');
+  
+        if (!video || !playBtn || !pauseBtn || !fullscreenBtn) return;
+  
+        playBtn.addEventListener('click', () => {
+          video.play();
+          playBtn.style.display = 'none';
+          pauseBtn.style.display = 'flex';
+        });
+  
+        pauseBtn.addEventListener('click', () => {
+          video.pause();
+          pauseBtn.style.display = 'none';
+          playBtn.style.display = 'flex';
+        });
+  
+        fullscreenBtn.addEventListener('click', () => {
+          if (video.requestFullscreen) {
+            video.requestFullscreen();
+          } else if (video.webkitRequestFullscreen) {
+            video.webkitRequestFullscreen();
+          } else if (video.msRequestFullscreen) {
+            video.msRequestFullscreen();
+          }
+        });
+  
+        video.addEventListener('pause', () => {
+          pauseBtn.style.display = 'none';
+          playBtn.style.display = 'flex';
+        });
+  
+        video.addEventListener('play', () => {
+          playBtn.style.display = 'none';
+          pauseBtn.style.display = 'flex';
+        });
+      });
+  
+      moveTrack(); // Initialize
+    });
+  </script>

@@ -1,0 +1,160 @@
+<!-- https://i.postimg.cc/zXFYxR9N/image.png -->
+<style>
+    .variant-selector {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+  
+    .variant-item {
+      border: 2px solid #ccc;
+      border-radius: 9999px;
+      padding: 16px 24px;
+      cursor: pointer;
+      position: relative;
+      background-color: #fff;
+      transition: border-color 0.3s ease, background-color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+  
+    .variant-item.selected {
+      border-color: #000;
+      background-color: #6fb3b887;
+    }
+  
+    .variant-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    .variant-title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+  
+    .variant-price {
+      font-size: 20px;
+      font-weight: 700;
+    }
+  
+    .original-price {
+      font-size: 16px;
+      text-decoration: line-through;
+      color: #999;
+      margin-right: 8px;
+    }
+  
+    .discount-badge {
+      background-color: #e60023;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 9999px;
+      padding: 2px 8px;
+      margin-left: 10px;
+    }
+  
+    .variant-desc {
+      font-size: 14px;
+      color: #333;
+    }
+  
+    .highlight-badge {
+      position: absolute;
+      top: -12px;
+      left: 60%;
+      transform: translateX(-50%);
+      background: #000;
+      color: #fff;
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 9999px;
+    }
+  
+    .variant-radio {
+      display: none;
+    }
+  
+    .prod__option.prod__option--image {
+      display: none;
+    }
+   @media screen and (max-width: 768px) {
+  .highlight-badge{
+  width:80%;
+  left:50%;
+  text-align:center;
+  }
+  .variant-title{
+  font-size:15px;
+  }
+  .variant-item {
+  gap:0px;
+  
+  }
+   }
+  </style>
+  
+  <div class="variant-selector">
+    {% for variant in product.variants %}
+      {% assign variant_index = forloop.index0 %}
+  
+      <label class="ngm-variation variant-item {% if variant == product.selected_or_first_available_variant %}selected{% endif %}" for="variant-{{ variant.id }}">
+        
+        {% if forloop.last %}
+          <div class="highlight-badge">Over 7,000 people choose this supply</div>
+        {% endif %}
+  
+        <div class="variant-title-row">
+          <div class="variant-title">
+            {{ variant.title }}
+            {% if variant.metafields.custom.discount %}
+              <span class="discount-badge">SAVE {{ variant.metafields.custom.discount }}</span>
+            {% endif %}
+          </div>
+          <div class="variant-price">
+            {% if variant.compare_at_price > variant.price %}
+              <span class="original-price">{{ variant.compare_at_price | money }}</span>
+            {% endif %}
+            {{ variant.price | money }}
+          </div>
+        </div>
+  
+        <div class="variant-desc">
+          {% case variant.title %}
+            {% when "3 Month Supply" %}3 Boxes / 24 pairs of patches + 
+            {% when "2 Month Supply" %}2 Boxes / 16 pairs of patches
+            {% when "1 Month Supply" %}1 Box / 8 pairs of patches
+            {% else %}{{ variant.title }}
+          {% endcase %}
+        </div>
+  
+        <input
+          type="radio"
+          class="variant-radio"
+          id="variant-{{ variant.id }}"
+          name="variant-selector"
+          value="{{ variant.id }}"
+          {% if variant == product.selected_or_first_available_variant %}checked{% endif %}
+          onchange="updateVariant(this);"
+        >
+      </label>
+    {% endfor %}
+  </div>
+  
+  <script>
+    document.querySelectorAll('.ngm-variation').forEach((el, index) => {
+      el.onclick = () => {
+        document.getElementsByClassName('product-option-item ')[index].click();
+      }
+    });
+  
+    function updateVariant(radio) {
+      const variantItems = document.querySelectorAll('.variant-item');
+      variantItems.forEach(item => item.classList.remove('selected'));
+      radio.closest('.variant-item').classList.add('selected');
+    }
+  </script>

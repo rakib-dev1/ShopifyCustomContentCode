@@ -1,0 +1,192 @@
+<!-- https://i.postimg.cc/HnG1h0YY/image.png -->
+<section class="variant-product-section">
+    <div class="product-container">
+      <div class="product-image">
+        <img id="main-product-image" src="{{ product.featured_image | img_url: '800x' }}" alt="{{ product.title }}">
+      </div>
+  
+      <div class="product-variants">
+        <h2>Choose Your Bundle</h2>
+  
+        {% for variant in product.variants %}
+        <div class="variant-option {% if forloop.first %}active{% endif %}"
+             data-variant-id="{{ variant.id }}"
+             data-image="{{ variant.featured_image | img_url: '800x' }}">
+          <div class="variant-info">
+            <h3>{{ variant.title }}</h3>
+            <p>
+              {% if variant.title contains '3' %}
+                3 Boxes / 24 patch pairs + <span class="free-shipping">Free Shipping</span>
+              {% elsif variant.title contains '2' %}
+                2 Boxes / 16 patch pairs + <span class="free-shipping">Free Shipping</span>
+              {% else %}
+                1 Box / 8 patch pairs
+              {% endif %}
+            </p>
+          </div>
+          <div class="variant-pricing">
+            {% if variant.compare_at_price > variant.price %}
+              <span class="original-price">${{ variant.compare_at_price | divided_by: 100 }}</span>
+            {% endif %}
+            <span class="discounted-price">${{ variant.price | divided_by: 100 }}</span>
+          </div>
+        </div>
+        {% endfor %}
+  
+        <form id="custom-add-to-cart-form">
+          <input type="hidden" name="id" id="selected-variant-id" value="{{ product.variants.first.id }}">
+          <button type="submit" class="reserve-button">Reserve Now and Save Money
+  </button>
+        </form>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Styles -->
+  <style>
+  .variant-product-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .product-container {
+    display: flex;
+    gap: 25px;
+    max-width: 1200px;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .product-image {
+    width: 500px;
+  }
+  .product-image img {
+    border-radius: 8px;
+    transition: opacity 0.3s ease;
+    width: 100%;
+  }
+  .product-variants {
+    background: #edf5f5;
+    border: 1px solid #0f182a;
+    border-radius: 8px;
+    padding: 50px 20px;
+    width: 50%;
+  }
+  .product-variants h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .variant-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 99999px;
+    margin-bottom: 10px;
+    background: #fff;
+    position: relative;
+    cursor: pointer;
+  }
+  .variant-option.active {
+    border: 2px solid black;
+    background: #b6d8da;
+  }
+  .variant-info h3 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  .variant-info p {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 5px 0 0;
+  }
+  .free-shipping {
+    color: #38bdf8;
+    font-weight: bold;
+  }
+  .variant-pricing {
+    text-align: right;
+  }
+  .original-price {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 0.9rem;
+    display: block;
+  }
+  .discounted-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #000;
+  }
+  .reserve-button {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    width: 100%;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  @media(max-width:1024px){
+    .product-variants { width: 100%; }
+    .product-image { width: 100%; }
+  }
+  </style>
+  
+  <!-- Script -->
+  <script>
+    // Variant switching
+    document.querySelectorAll('.variant-option').forEach(option => {
+      option.addEventListener('click', function () {
+        document.querySelectorAll('.variant-option').forEach(el => el.classList.remove('active'));
+        this.classList.add('active');
+        const newImage = this.getAttribute('data-image');
+        const mainImage = document.getElementById('main-product-image');
+        mainImage.style.opacity = 0;
+        setTimeout(() => {
+          mainImage.src = newImage;
+          mainImage.style.opacity = 1;
+        }, 200);
+        const variantId = this.getAttribute('data-variant-id');
+        document.getElementById('selected-variant-id').value = variantId;
+      });
+    });
+  
+    // Add to cart AJAX
+    document.getElementById('custom-add-to-cart-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const variantId = document.getElementById('selected-variant-id').value;
+  
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'xmlhttprequest'
+        },
+        body: JSON.stringify({ id: variantId, quantity: 1 })
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log('Added to cart:', data);
+        // Trigger cart drawer if available
+        const cartTrigger = document.querySelector('[data-cart-trigger]');
+        if (cartTrigger) {
+          cartTrigger.click();
+        } else if (window.Shopify && window.Shopify.theme && window.Shopify.theme.cartDrawer) {
+          window.Shopify.theme.cartDrawer.open();
+        } else {
+          location.reload(); // fallback
+        }
+      })
+      .catch(err => {
+        console.error('Cart Error:', err);
+        alert('Something went wrong. Please try again.');
+      });
+    });
+  </script>

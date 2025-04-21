@@ -1,0 +1,150 @@
+<!-- https://i.postimg.cc/rmNNBMcD/image.png -->
+<style>
+    .table_section{
+        padding:50px 100px;
+    }
+
+    /* Styling the comparison table using display table */
+    .comparison-table {
+    display: table;
+    width: 100%;
+    /* max-width: 900px; */
+    margin-top: 20px;
+    text-align: center;
+    border-collapse: collapse;
+    background-color: #f9fdff;
+    border: 2px solid;
+    border-color: transparent;
+    overflow: hidden;
+}
+
+    .comparison-table-row {
+        display: table-row;
+    }
+
+.comparison-table-header, .comparison-table-cell {
+    display: table-cell;
+    padding: 16px;
+    border: 1px solid #0f182a;
+    vertical-align: middle;
+    font-size: 18px;
+    color: #333;
+}
+.comparison-table-header {
+    background-color: #f9fdff;
+    color: #000000;
+    font-weight: normal;
+    font-size: 23px;
+    border-left: none;
+}
+
+.comparison-table .highlight-header {
+    background-color: #d5f1ff;
+    font-weight: bold;
+    color: black;
+    /* border-color: transparent; */
+    border-radius: 10px 10px 0 0;
+    border-left: none;
+    border: none;
+}
+
+.comparison-table .feature-name {
+    text-align: left;
+    font-weight: normal;
+    color: #333;
+    border-right: none;
+}
+
+    /* Emphasize ticks (✔) and crosses (✘) */
+    .fa-solid {
+        font-size: 24px;
+    }
+
+    /* Tick styling */
+    .fa-circle-check {
+        color: #28a745; /* Green color for ticks */
+    }
+
+    /* Cross styling */
+    .fa-circle-xmark {
+        color: #dc3545; /* Red color for crosses */
+    }
+
+    /* Optional: Add background color to every alternate row */
+    .comparison-table-row:nth-child(even) {
+    background-color: #effaff;
+}
+
+
+.best-choice {
+    background-color: #d5f1ff;
+    font-weight: bold;
+    /* border-color: transparent; */
+}
+
+    @media (max-width: 768px) {
+        .table_section {
+            padding: 20px 15px;
+        }
+        .comparison-table-header, .comparison-table-cell {
+            display: table-cell;
+            padding: 10px;
+            border: 1px solid #ffffff1c;
+            vertical-align: middle;
+            font-size: 14px;
+            color: #333;
+        }
+    }
+    @media (min-width: 1500px) {
+        .table_section {
+            padding: 50px 200px;
+        }
+    }
+.comparison-table-header img {
+    display: block;
+    margin: 0 auto 10px;
+}
+</style>
+
+<!-- Include Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<div class="comparison-table">
+  <div class="comparison-table-row">
+    <div class="comparison-table-header feature-name"> </div>
+    <div class="comparison-table-header highlight-header">
+     Rifinefusion
+    </div>
+    <div class="comparison-table-header">Other Brands</div>
+  </div>
+
+  <div class="comparison-table-row">
+    <div class="comparison-table-cell feature-name">Natural & Painless</div>
+    <div class="comparison-table-cell best-choice"><i class="fa-solid fa-circle-check"></i></div>
+    <div class="comparison-table-cell"><i class="fa-solid fa-circle-xmark"></i></div>
+  </div>
+
+  <div class="comparison-table-row">
+    <div class="comparison-table-cell feature-name">Removes Toxins From Skin</div>
+    <div class="comparison-table-cell best-choice"><i class="fa-solid fa-circle-check"></i></div>
+    <div class="comparison-table-cell"><i class="fa-solid fa-circle-check"></i></div>
+  </div>
+
+  <div class="comparison-table-row">
+    <div class="comparison-table-cell feature-name">Clinic Visit Is Not Required</div>
+    <div class="comparison-table-cell best-choice"><i class="fa-solid fa-circle-check"></i></div>
+    <div class="comparison-table-cell"><i class="fa-solid fa-circle-xmark"></i></div>
+  </div>
+
+  <div class="comparison-table-row">
+    <div class="comparison-table-cell feature-name">Cruelty Free</div>
+    <div class="comparison-table-cell best-choice"><i class="fa-solid fa-circle-check"></i></div>
+    <div class="comparison-table-cell"><i class="fa-solid fa-circle-xmark"></i></div>
+  </div>
+
+  <div class="comparison-table-row">
+    <div class="comparison-table-cell feature-name">Wallet Friendly</div>
+    <div class="comparison-table-cell best-choice"><i class="fa-solid fa-circle-check"></i></div>
+    <div class="comparison-table-cell"><i class="fa-solid fa-circle-xmark"></i></div>
+  </div>
+</div>

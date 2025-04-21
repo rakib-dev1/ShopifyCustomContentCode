@@ -1,0 +1,159 @@
+<!-- https://i.postimg.cc/qqHWLkwg/image.png -->
+<style>
+    #sliderTrust {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        padding-bottom: 10px;
+        margin-top: -25px;
+        padding-top: 0px;
+    }
+    
+    .slideTrust {
+        opacity: 0;
+        transition: opacity 0.9s ease;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        text-align: center;
+    }
+    
+    /* Active slideTrust */
+    .slideTrust.active {
+        opacity: 1; /* Show active slideTrust */
+    }
+    
+    /* Navigation Arrows */
+    #prev_slide,
+    #next_slide {
+        display: flex;
+        position: absolute;
+        top: 50%;
+        cursor: pointer;
+        font-size: 24px;
+        color: #6FB3B8;
+        transform: translateY(-50%);
+    }
+    
+    #prev_slide {
+        left: 10%; /* Adjusted for mobile */
+    }
+    
+    #next_slide {
+        right: 10%; /* Adjusted for mobile */
+    }
+    
+    /* Button Styles */
+    .line_button {
+        display: inline-block;
+        background: #38bdf8;
+        padding: 6px 20px;
+        border-radius: 50px;
+        color: #fff;
+        margin-left: 10px;
+        text-decoration: none; /* Remove underline from the link */
+        font-size: 14px;
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 767px) {
+        .line_button {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+    
+        .announcement-bar__content {
+            overflow: hidden;
+            display: flex;
+            text-align: center;
+            padding: 18px 20px;
+            max-height: none;
+            margin-right: 0px;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+        }
+
+        #prev_slide,
+        #next_slide {
+            font-size: 20px; /* Smaller arrow size for tablets */
+        }
+        #prev_slide {
+            left: 01px; /* Adjusted for mobile */
+        }
+    
+        #next_slide {
+            right: 01px; /* Adjusted for mobile */
+        }
+        .slideTrust {
+            font-size: 1.15rem !important;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        #prev_slide,
+        #next_slide {
+            font-size: 18px; /* Smaller arrow size for mobile */
+        }
+    }
+</style>
+
+<div id="sliderTrust">
+    <!-- Slides -->
+    <div class="slideTrust active">
+        🚛 Free worldwide shipping
+    </div>
+    <div class="slideTrust">
+        🔄 90-day money-back guarantee
+    </div>
+    <div class="slideTrust">
+        🔥 Over 2000 customers trust us!
+    </div>
+    <!-- Navigation Arrows -->
+    <div id="prev_slide">❮</div>
+    <div id="next_slide">❯</div>
+</div>
+
+<script>
+    var slides = document.querySelectorAll('.slideTrust');
+    var totalSlides = slides.length;
+    var currentIndex = 0;
+    
+    // Function to show the current slideTrust by setting opacity
+    function showSlide(index) {
+        slides.forEach((slideTrust, i) => {
+            slideTrust.classList.remove('active'); // Remove active class
+            if (i === index) {
+                slideTrust.classList.add('active'); // Show the active slideTrust
+            }
+        });
+    }
+    
+    // Function to move to the next_slide slideTrust
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        showSlide(currentIndex);
+    }
+    
+    // Function to move to the previous slideTrust
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        showSlide(currentIndex);
+    }
+    
+    // Event listeners for navigation arrows
+    document.getElementById('next_slide').addEventListener('click', nextSlide);
+    document.getElementById('prev_slide').addEventListener('click', prevSlide);
+    
+    // Auto slideTrust every 3 seconds
+    var autoSlide = setInterval(nextSlide, 3000);
+    
+    // Initial slideTrust setup
+    showSlide(currentIndex);
+</script>

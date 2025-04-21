@@ -1,0 +1,207 @@
+<!-- https://i.postimg.cc/Y2X1YXSB/image.png -->
+<section class="eaty-carousel-section">
+    <div class="eaty-carousel-wrapper">
+      <div class="eaty-carousel" data-carousel-id="carousel1">
+        <div class="eaty-carousel-track">
+          <div class="eaty-carousel-slide">
+            <img src="https://cdn.shopify.com/s/files/1/0747/1798/7033/files/26.png?v=1745045365" alt="Image 1">
+            <div class="eaty-carousel-text">
+              <h3>Magazine A</h3>
+              <p>"A compelling quote from Magazine A about the product."</p>
+            </div>
+          </div>
+          <div class="eaty-carousel-slide">
+            <img src="https://cdn.shopify.com/s/files/1/0747/1798/7033/files/hydrozen_24cfaa5f-9fb9-42a3-a8f9-8af3beba1c4a.png?v=1745046536" alt="Image 2">
+            <div class="eaty-carousel-text">
+              <h3>Magazine B</h3>
+              <p>"Review from Magazine B highlighting key features."</p>
+            </div>
+          </div>
+          <div class="eaty-carousel-slide">
+            <img src="https://cdn.shopify.com/s/files/1/0747/1798/7033/files/28.png?v=1745045365" alt="Image 3">
+            <div class="eaty-carousel-text">
+              <h3>Magazine C</h3>
+              <p>"Magazine C shares thoughts on the design and quality."</p>
+            </div>
+          </div>
+        </div>
+        <button class="eaty-carousel-prev">‹</button>
+        <button class="eaty-carousel-next">›</button>
+        <div class="eaty-carousel-dots"></div>
+      </div>
+    </div>
+  </section>
+  
+  <style>
+    
+    .eaty-carousel-wrapper {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+  
+    .eaty-carousel {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+  
+    .eaty-carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+  
+    .eaty-carousel-slide {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      flex-shrink: 0;
+      padding: 20px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+  
+    .eaty-carousel-slide img {
+      width: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+  
+    .eaty-carousel-text {
+      margin-top: 1rem;
+    }
+  
+    .eaty-carousel-text h3 {
+      font-size: 1.2rem;
+      color: #111;
+      margin-bottom: 0.5rem;
+    }
+  
+    .eaty-carousel-text p {
+      font-size: 1rem;
+      color: #444;
+    }
+  
+    .eaty-carousel button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #38bdf8;
+      color: #fff;
+      border: none;
+      font-size: 28px;
+      padding: 0px 15px;
+      cursor: pointer;
+      z-index: 2;
+      border-radius: 55%;
+    }
+  
+    .eaty-carousel-prev {
+      left: 10px;
+    }
+  
+    .eaty-carousel-next {
+      right: 10px;
+    }
+  
+    .eaty-carousel-dots {
+      text-align: center;
+      margin-top: 10px;
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+    }
+  
+    .eaty-carousel-dots span {
+      display: inline-block;
+      height: 10px;
+      width: 10px;
+      background: #ccc;
+      border-radius: 50%;
+      margin: 0 4px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+  
+    .eaty-carousel-dots span.active {
+      background: #38bdf8;
+    }
+  
+    @media (min-width: 768px) {
+      .eaty-carousel-slide {
+        flex-direction: row;
+        justify-content: center;
+        text-align: left;
+      }
+  
+      .eaty-carousel-slide img {
+        max-width: 50%;
+        margin-right: 20px;
+      }
+  
+      .eaty-carousel-text {
+        max-width: 50%;
+      }
+    }
+  </style>
+  
+  <script>
+    document.querySelectorAll('.eaty-carousel').forEach(carousel => {
+      let index = 0;
+      const track = carousel.querySelector('.eaty-carousel-track');
+      const slides = track.querySelectorAll('.eaty-carousel-slide');
+      const totalSlides = slides.length;
+      const paginationContainer = carousel.querySelector('.eaty-carousel-dots');
+  
+      // Create pagination dots
+      slides.forEach((_, i) => {
+        const dot = document.createElement('span');
+        dot.addEventListener('click', () => {
+          index = i;
+          updateSlide();
+          resetAutoRotate();
+        });
+        paginationContainer.appendChild(dot);
+      });
+  
+      const dots = paginationContainer.querySelectorAll('span');
+  
+      const updateSlide = () => {
+        track.style.transform = `translateX(-${index * 100}%)`;
+        dots.forEach(dot => dot.classList.remove('active'));
+        if (dots[index]) dots[index].classList.add('active');
+      };
+  
+      // Next / Prev
+      carousel.querySelector('.eaty-carousel-prev').addEventListener('click', () => {
+        index = (index - 1 + totalSlides) % totalSlides;
+        updateSlide();
+        resetAutoRotate();
+      });
+  
+      carousel.querySelector('.eaty-carousel-next').addEventListener('click', () => {
+        index = (index + 1) % totalSlides;
+        updateSlide();
+        resetAutoRotate();
+      });
+  
+      // Auto rotate
+      let autoRotate = setInterval(() => {
+        index = (index + 1) % totalSlides;
+        updateSlide();
+      }, 4000);
+  
+      const resetAutoRotate = () => {
+        clearInterval(autoRotate);
+        autoRotate = setInterval(() => {
+          index = (index + 1) % totalSlides;
+          updateSlide();
+        }, 4000);
+      };
+  
+      updateSlide(); // Initial update
+    });
+  </script>

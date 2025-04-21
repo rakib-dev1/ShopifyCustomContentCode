@@ -1,0 +1,100 @@
+<!-- https://i.postimg.cc/fbFGV70c/image.png -->
+<html>
+{% comment %}
+  Custom Variant Selector for Shopify Product Page
+  Displays image, title, and price for each variant, with clickable sections
+  Updated to trigger main image and price updates on variant selection
+{% endcomment %}
+
+<style>
+  .variant-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .variant-item {
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    flex:1;
+    text-align: center;
+    transition: border-color 0.3s ease;
+  }
+
+  .variant-item:hover,
+  .variant-item.selected {
+    border-color: #000;
+  }
+
+  .variant-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+
+  .variant-title {
+    font-size: 16px;
+    margin: 10px 0 5px;
+  }
+
+  .variant-price {
+    font-size: 14px;
+    color: #555;
+  }
+
+  .variant-radio {
+    display: none;
+  }
+.prod__option.prod__option--image {
+    display: none;
+}
+</style>
+
+<div class="variant-selector">
+  {% for variant in product.variants %}
+    <label class="ngm-variation variant-item {% if variant == product.selected_or_first_available_variant %}selected{% endif %}" for="variant-{{ variant.id }}">
+      {% if variant.image %}
+        <img class="variant-image" src="{{ variant.image.src | img_url: '200x200' }}" alt="{{ variant.title | escape }}">
+      {% else %}
+        <img class="variant-image" src="{{ product.featured_image | img_url: '200x200' }}" alt="{{ variant.title | escape }}">
+      {% endif %}
+      <div class="variant-title">{{ variant.title }}</div>
+      <div class="variant-price">{{ variant.price | money }}</div>
+      <input
+        type="radio"
+        class="variant-radio"
+        id="variant-{{ variant.id }}"
+        name="variant-selector"
+        value="{{ variant.id }}"
+        {% if variant == product.selected_or_first_available_variant %}checked{% endif %}
+        onchange="updateVariant(this);"
+      >
+    </label>
+  {% endfor %}
+</div>
+
+{% comment %}
+  Hidden select element to sync with Shopify's variant handling
+{% endcomment %}
+
+
+<script>
+
+  document.querySelectorAll('.ngm-variation').forEach((el, index) => {
+    el.onclick = () => {
+
+      document.getElementsByClassName('product-option-item ')[index].click();
+    }
+  })
+
+
+  function updateVariant(radio) {
+    const variantItems = document.querySelectorAll('.variant-item');
+    variantItems.forEach(item => item.classList.remove('selected'));
+    radio.closest('.variant-item').classList.add('selected');
+
+  }
+</script>

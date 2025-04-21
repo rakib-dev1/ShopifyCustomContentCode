@@ -1,0 +1,182 @@
+<!-- https://i.postimg.cc/nzBPMyxx/image.png -->
+<section class="infusion-benefits">
+    <h2>Smooth fine lines <em><span style="color:#6FB3B8">safely and naturally</span></em>.</h2>
+  
+    <p class="intro-text">
+      Reveal a brighter complexion with our at-home treatment.
+      Our device uses tiny needles to gently promote collagen production
+      – for firmer, smoother skin. The Rifinefusion Micro-Infusion System is also
+      100% cruelty-free and recommended by leading dermatologists.
+  </p>
+    <ul class="benefit-list">
+      <li class="benefit-item">
+        <div class="icon-circle">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+        </div>
+        <div class="benefit-content">
+        <h4>Immediate results, long-lasting glow</h4>
+  
+          <p>Experience visible improvements in skin texture and appearance after just the first use – with long-term benefits.</p>
+  
+        </div>
+      </li>
+      <li class="benefit-item">
+        <div class="icon-circle">
+          <i class="fa-solid fa-flask-vial"></i>
+        </div>
+        <div class="benefit-content">
+          <h4>Clinical results at a low price</h4>
+  
+          <p>Achieve professional skincare from the comfort of your home. Enjoy radiant, youthful skin – without the high costs.</p>
+  
+        </div>
+      </li>
+      <li class="benefit-item">
+        <div class="icon-circle">
+          <i class="fa-solid fa-droplet"></i>
+        </div>
+        <div class="benefit-content">
+          <h4>Gentle & safe for all skin types</h4>
+  
+          <p>Our device has been dermatologically tested and is safe for sensitive, dry, or combination skin.</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+  
+    
+    
+    <style>
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .infusion-benefits h2 {
+    font-size: 32px;
+    font-weight: bold;
+  }
+  
+  .infusion-benefits h2 em {
+    font-style: italic;
+    color: #4d4d4d;
+  }
+  
+  .intro-text {
+    margin: 20px 0 40px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .benefit-list {
+      list-style: none;
+      padding-left: 0;
+  }
+  
+  .benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    margin-bottom: 40px;
+    padding-left: 20px;
+    position: relative;
+  }
+  .benefit-content {
+      margin-left: 12px;
+  }
+  .icon-circle {
+      top: -1px;
+      left: -29px;
+      position: absolute;
+      width: 52px;
+      height: 52px;
+      background-color: #6FB3B8;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+  }
+  
+  .benefit-content h4 {
+    margin: 0 0 8px;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .benefit-content p {
+    margin: 0;
+    font-size: 15px;
+    color: #444;
+  }
+  
+  .benefit-item.in_viewport {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .benefit-item:not(:last-child)::before {
+      content: "";
+      position: absolute;
+      left: -4px;
+      top: 50px;
+      width: 3px;
+      height: calc(100% - 0px);
+      background-color: #000000;
+      z-index: 0;
+  }
+  @media(max-width:800px){
+  .icon-circle {
+      top: -1px;
+      left: -12px;
+      position: absolute;
+      width: 48px;
+      height: 48px;
+      background-color: #38bdf8;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+  }
+  .benefit-content {
+      margin-left: 30px;
+  }
+  .benefit-item:not(:last-child)::before {
+      content: "";
+      position: absolute;
+      left: 11px;
+      top: 44px;
+      width: 3px;
+      height: calc(100% - 0px);
+      background-color: #000000;
+      z-index: 0;
+  }
+  }
+    </style>  
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const items = document.querySelectorAll(".benefit-item");
+  
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in_viewport");
+          } else {
+            entry.target.classList.remove("in_viewport");
+          }
+        });
+      }, {
+        root: null,
+        threshold: 0.1
+      });
+  
+      items.forEach((item) => {
+        observer.observe(item);
+      });
+    });
+  </script>
