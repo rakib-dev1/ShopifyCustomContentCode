@@ -1,0 +1,166 @@
+<section class="how-to-use-section">
+  <div class="how-to-use-container">
+    <!-- Video Section -->
+
+    <!-- Steps Section -->
+    <div class="steps-container">
+      <h2></h2>
+      <div class="steps-images">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0697/5553/5498/files/imagesaa_1100x_4afaed97-9b5c-478e-a17f-418508c6a5ca.png?v=1745061656"
+          alt="Step 1"
+          data-step="prepare"
+        />
+        <img
+          src="https://cdn.shopify.com/s/files/1/0697/5553/5498/files/patsssches_1100x_7cd08449-6515-43fc-af74-86208dbca5ca.png?v=1745061666"
+          alt="Step 2"
+          data-step="treatment"
+        />
+        <img
+          src="https://cdn.shopify.com/s/files/1/0697/5553/5498/files/eee_1100x_0cc3879f-312c-4e1c-84f8-323375f05561.png?v=1745061677"
+          alt="Step 3"
+          data-step="aftercare"
+        />
+      </div>
+      <div class="steps-tabs">
+        <span class="tab active" data-step="prepare">Prepare</span>
+        <span class="tab" data-step="treatment">Treatment</span>
+        <span class="tab" data-step="aftercare">Aftercare</span>
+      </div>
+      <div class="steps-content">
+        <p data-step="prepare" class="active">
+          Wash and dry your face prior to use, removing all makeup. Make sure
+          your hands are clean. Take the patch and simply peel off the adhesive
+          strips. Avoid touching the adhesive and the darts with your hands.
+        </p>
+        <p data-step="treatment">
+          Apply the patch to the desired area and press gently to ensure it
+          adheres properly. Leave it on for the recommended time.
+        </p>
+        <p data-step="aftercare">
+          Remove the patch gently and discard it. Follow up with your regular
+          skincare routine for best results.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+
+  .steps-container {
+    flex: 2;
+    max-width: 600px;
+  }
+
+  .steps-container h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .steps-images {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+.steps-images img {
+    width: 150px;
+    height: 120px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+  .steps-images img:hover {
+    transform: scale(1.1);
+  }
+
+  .steps-tabs {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .steps-tabs .tab {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+
+  .steps-tabs .tab.active {
+    color: #000;
+    border-bottom: 2px solid #000;
+  }
+
+  .steps-content p {
+    display: none;
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.5;
+  }
+
+  .steps-content p.active {
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+  
+    .video-container,
+    .steps-container {
+      max-width: 100%;
+    }
+
+    .steps-images img {
+      width: 60px;
+      height: 60px;
+    }
+  }
+</style>
+
+<script>
+  const tabs = document.querySelectorAll(".tab");
+  const content = document.querySelectorAll(".steps-content p");
+  const images = document.querySelectorAll(".steps-images img");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const step = tab.getAttribute("data-step");
+
+      // Update active tab
+      tabs.forEach((t) => t.classList.remove("active"));
+      tab.classList.add("active");
+
+      // Update active content
+      content.forEach((c) => {
+        c.classList.remove("active");
+        if (c.getAttribute("data-step") === step) {
+          c.classList.add("active");
+        }
+      });
+    });
+  });
+
+  images.forEach((image) => {
+    image.addEventListener("click", () => {
+      const step = image.getAttribute("data-step");
+
+      // Update active tab
+      tabs.forEach((t) => t.classList.remove("active"));
+      document
+        .querySelector(`.tab[data-step="${step}"]`)
+        .classList.add("active");
+
+      // Update active content
+      content.forEach((c) => {
+        c.classList.remove("active");
+        if (c.getAttribute("data-step") === step) {
+          c.classList.add("active");
+        }
+      });
+    });
+  });
+</script>
