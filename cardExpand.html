@@ -1,0 +1,217 @@
+<style>
+    body {
+      font-family: sans-serif;
+      background: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .image-accordion-section {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .image-accordion-container {
+      display: flex;
+      flex-wrap: wrap; 
+      gap: 10px; 
+    }
+
+    .accordion-item {
+      flex: 0 0 calc(50% - 10px); 
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      overflow: hidden;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .accordion-item:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .image-container {
+      position: relative;
+      width: 100%;
+      height: 250px;
+      overflow: hidden;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .accordion-text {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 5px 10px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+    }
+
+    .accordion-text h3 {
+      margin: 0;
+      margin-right: 8px;
+      font-size: 1rem;
+    }
+
+    .accordion-icon {
+      font-size: 0.9rem;
+      transition: transform 0.3s ease;
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      padding: 0 15px;
+      background: #fff;
+      font-size: 0.9rem;
+      position: ab;
+    }
+
+    .accordion-item{
+        position: relative;
+    }
+
+    .accordion-item.active .accordion-content {
+      max-height: 200px;
+      padding: 15px;
+    }
+
+    .accordion-item.active .accordion-icon {
+      transform: rotate(180deg);
+    }
+
+    
+    @media (max-width: 768px) {
+      .accordion-item {
+        flex: 0 0 100%; 
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="image-accordion-section">
+    <div class="image-accordion-container">
+
+      <!-- First Row -->
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <div class="image-container">
+            <img src="https://cdn.shopify.com/s/files/1/0697/5553/5498/files/pi_retinol.png?v=1745056108" alt="Retinol" />
+            <div class="accordion-text">
+              <h3>Retinol</h3>
+              <span class="accordion-icon">▼</span>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-content">
+          <p>Helps with skin renewal and brightening.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <div class="image-container">
+            <img src="https://cdn.shopify.com/s/files/1/0697/5553/5498/files/pi_acetyl.png?v=1745056088" alt="Niacinamide" />
+            <div class="accordion-text">
+              <h3>Niacinamide</h3>
+              <span class="accordion-icon">▼</span>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-content">
+          <p>Improves skin tone and reduces redness.</p>
+        </div>
+      </div>
+
+      <!-- Second Row -->
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <div class="image-container">
+            <img src="https://cdn.shopify.com/s/files/1/0697/5553/5498/files/pi_niacinamide.png?v=1745056120" alt="Copper Peptides" />
+            <div class="accordion-text">
+              <h3>Copper Peptides</h3>
+              <span class="accordion-icon">▼</span>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-content">
+          <p>Promotes collagen production for firmer skin.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <div class="image-container">
+            <img src="https://cdn.shopify.com/s/files/1/0697/5553/5498/files/pi_copper.png?v=1745056130" alt="Licorice" />
+            <div class="accordion-text">
+              <h3>Licorice</h3>
+              <span class="accordion-icon">▼</span>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-content">
+          <p>Reduces the appearance of dark spots.</p>
+        </div>
+      </div>
+
+      <!-- Third Row -->
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <div class="image-container">
+            <img src="https://cdn.shopify.com/s/files/1/0697/5553/5498/files/pi_caffeine.png?v=1745056141" alt="Caffeine" />
+            <div class="accordion-text">
+              <h3>Caffeine</h3>
+              <span class="accordion-icon">▼</span>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-content">
+          <p>Reduces puffiness and refreshes skin.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <div class="image-container">
+            <img src="https://cdn.shopify.com/s/files/1/0697/5553/5498/files/pi_licorice.png?v=1745056151" alt="Licorice" />
+            <div class="accordion-text">
+              <h3>Licorice</h3>
+              <span class="accordion-icon">▼</span>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-content">
+          <p>Brightens and evens skin tone.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    document.querySelectorAll(".accordion-header").forEach((header) => {
+      header.addEventListener("click", function () {
+        const parent = this.closest(".accordion-item");
+
+        // Collapse all other accordion items
+        document.querySelectorAll(".accordion-item").forEach((item) => {
+          if (item !== parent) {
+            item.classList.remove("active");
+          }
+        });
+
+        // Toggle the clicked item
+        parent.classList.toggle("active");
+      });
+    });
+  </script>
